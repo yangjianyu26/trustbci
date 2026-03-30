@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>TrustBCI Platform</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5b6e8c;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1E2A5E, #3B82F6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo p {
+            font-size: 0.8rem;
+            color: #475569;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .role-badge {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .role-tag {
+            background: white;
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+        }
+        .role-tag i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+
+        .hero {
+            margin: 48px 0 56px 0;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #0f2b4d, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+        }
+        .hero .highlight {
+            font-size: 1.2rem;
+            color: #334155;
+            max-width: 750px;
+            margin: 0 auto 20px;
+        }
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            background: #eef2ff;
+            padding: 12px 28px;
+            border-radius: 80px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .trust-badge span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e40af;
+        }
+        .trust-badge i {
+            margin-right: 6px;
+            color: #2563eb;
+        }
+
+        .section {
+            margin-bottom: 64px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-sub {
+            color: #475569;
+            margin-bottom: 32px;
+            border-left: 4px solid #3b82f6;
+            padding-left: 16px;
+            font-weight: 500;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 24px 22px;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #eef2ff;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.12);
+            border-color: #cbdffc;
+        }
+        .card-icon {
+            font-size: 2.4rem;
+/*            color: #3b82f6;*/
+            color: #00A844;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
+        }
+        .card p {
+            color: #334155;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .badge-tool {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-top: 14px;
+        }
+        .incentive-card .card-icon {
+            color: #eab308;
+        }
+        .bci-card .card-icon {
+            color: #8b5cf6;
+        }
+        .divider-light {
+            height: 2px;
+            background: linear-gradient(90deg, #e2e8f0, transparent);
+            margin: 16px 0 24px;
+        }
+        .two-col-section {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .sub-block {
+            background: #fefefe;
+            border-radius: 32px;
+            padding: 8px 0 8px 0;
+        }
+        .sub-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sub-title i {
+            font-size: 1.6rem;
+            color: #3b82f6;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        /* Showcase styles */
+        .showcase-container {
+            background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
+            border-radius: 32px;
+            padding: 28px 32px;
+            margin: 40px 0 48px;
+            border: 1px solid #e0edff;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        }
+        .showcase-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0f2b4d;
+        }
+        .showcase-title i {
+            font-size: 2rem;
+            color: #3b82f6;
+        }
+        .showcase-sub {
+            color: #475569;
+            margin-bottom: 32px;
+            border-left: 4px solid #8b5cf6;
+            padding-left: 16px;
+        }
+
+        .demo-row { display: flex; flex-wrap: wrap; gap: 32px; margin-top: 20px; }
+        .demo-card { flex: 1; min-width: 260px; background: white; border-radius: 28px; padding: 24px; border: 1px solid #eef2ff; }
+        .demo-card h4 { font-size: 1.3rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .demo-card h4 i {
+            color: #3b82f6;
+        }
+        .input-group {
+            margin: 16px 0;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: #1e293b;
+        }
+
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px 14px; border-radius: 20px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 0.9rem; background: white; }
+        .input-group textarea { font-family: monospace; resize: vertical; }
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+        .btn { background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 40px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; transition: 0.2s; }
+        .btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+        .btn-secondary { background: #10b981; }
+        .btn-secondary:hover { background: #059669; }
+        .btn-purple { background: #8b5cf6; }
+        .btn-purple:hover { background: #7c3aed; }
+        .feedback { background: #f1f5f9; border-radius: 24px; padding: 16px; margin-top: 20px; font-size: 0.85rem; border-left: 4px solid #3b82f6; }
+        .success-text { color: #059669; font-weight: 500; }
+        .warning-text { color: #d97706; }
+        .data-preview { margin-top: 28px; background: white; border-radius: 28px; padding: 20px; border: 1px solid #e2edff; }
+        .preview-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; background: #fafcff; border-radius: 16px; overflow: hidden; }
+        .preview-table th, .preview-table td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; }
+        .preview-table th { background: #eef2ff; font-weight: 600; }
+        .query-result { background: #f0fdf4; border-left-color: #10b981; }
+        footer {
+            background: #f1f5f9;
+            border-radius: 32px 32px 0 0;
+            padding: 36px 0 24px;
+            margin-top: 60px;
+            text-align: center;
+            color: #475569;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .card-grid, .service-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .trust-badge {
+                padding: 8px 20px;
+            }
+            .showcase-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Navigation + Roles -->
+    <div class="navbar">
+        <div class="logo">
+            <h1><i class="fa-solid fa-brain"></i> TrustBCI</h1>
+            <!-- <p>Trustworthy BCI Data Platform | Privacy Computing · Assetization Engine · Federated Ecosystem</p> -->
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>A Trustworthy Platform for Collaborative Brain-Computer Interface (BCI) Data Exchange</h2>
+        <div class="trust-badge">
+            <span><i class="fas fa-shield-alt"></i> Ensure long-term preservation and security of BCI data </span>
+            <span><i class="fa-solid fa-bolt"></i> Empower open sharing of BCI data</span>
+            <span><i class="fa-solid fa-gem"></i></i> Release the value of BCI data</span>
+        </div>
+    </div>
+
+    <!-- ========= Data Contributor Section ========= -->
+    <div class="section">
+        <div class="section-title"><i class="fa-duotone fa-solid fa-upload"></i> Data Contributor</div>         
+        <div class="two-col-section">
+            <!-- Assetization Toolchain -->
+            <div class="sub-block">
+                <div class="sub-title">
+                    <i class="fas fa-tools"></i> 
+                    <span>Data Assetization Tools</span>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-database"></i></div>
+                        <h3>Data Governance</h3>
+                        <p>Standardize data formats, unify metadata descriptions, ensure data integrity, enhance the data usability.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-tag"></i></div>
+                        <h3>Data Pricing</h3>
+                        <p>Generate a recommended data price via analyzing factors such as data volume, signal quality, annotation density, and scenario uniqueness.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-mask"></i></div>
+                        <h3>Data Desensitization</h3>
+                        <p>Detect and remove personally identifiable information such as identity IDs, device IDs and phone numbers from raw datasets.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi‑dimensional Incentives -->
+            <div class="sub-block">
+                <div class="sub-title">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>Multi‑Dimensional Incentives</span>
+                </div>
+                <div class="card-grid">
+                    <div class="card incentive-card">
+                        <div class="card-icon"><i class="fas fa-coins"></i></div>
+                        <h3>Financial Incentives</h3>
+                        <p>Contributors can receive direct monetary rewards based on data value and usage.</p>
+                    </div>
+                    <div class="card incentive-card">
+                        <div class="card-icon"><i class="fas fa-award"></i></div>
+                        <h3>Reputation Incentives</h3>
+                        <p>Outstanding contributors are distinguished with official letters of appreciation, which can generate substantial public relations value and strengthen their credibility within the community.</p>
+                    </div>
+                    <div class="card incentive-card">
+                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Growth Incentives</h3>
+                        <p>Contributors may earn contribution points that help upgrade their membership levels consisting of Basic, Gold, Platinum, and Diamond. A higher level unlocks prioritized access to platform services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========= Data Consumer Section: Six Core Services ========= -->
+    <div class="section">
+        <div class="section-title"><i class="fa-solid fa-download"></i> Data Consumer</div>
+        <div class="sub-title">
+            <i class="fa-solid fa-bell-concierge"></i>
+            <span>Usage Services</span>
+         </div>
+        <div class="service-grid">
+            <div class="card bci-card">
+                <div class="card-icon"><i class="fa-chisel fa-regular fa-database"></i></div>
+                <h3>Controllable Data Synthesis</h3>
+                <p>Platform generates a synthetic dataset as a surrogate that preserves the format and statistical characteristics of the original data, which enables consumers to expand their training samples and improve model performance.</p>
+            </div>
+            <div class="card bci-card">
+                <div class="card-icon"><i class="fas fa-user-secret"></i></div>
+                <h3>Privacy-Preserving Data Query</h3>
+                <p>Consumers submit data query statements the platform and only obtain sanitized outputs.</p>
+            </div>
+            <div class="card bci-card">
+                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Federated Model Training</h3>
+                <p>Platform coordinates multiple contributors to jointly train the model, with each contributor sharing only necessary updates rather than raw data.</p>
+            </div>
+            <div class="card bci-card">
+                <div class="card-icon"><i class="fas fa-door-closed"></i></div>
+                <h3>Secure Data Room</h3>
+                <p>Provide a privacy-preserving computing environment built on Trusted Execution Environment (TEE) technology that enables consumers to upload executable code for custom analysis without direct access to raw data.</p>
+            </div>
+            <div class="card bci-card">
+                <div class="card-icon"><i class="fa-brands fa-osi"></i></div>
+                <h3>Virtual Brain Model</h3>
+                <p>Use uploaded research subject’ brain states along with relevant parameters to train a virtual brain model, and produce a digital twin that helps consumers better understand the subject’s brain.</p>
+            </div>
+            <div class="card bci-card">
+                <div class="card-icon"><i class="fas fa-robot"></i></div>
+                <h3>General BCI Data Model</h3>
+                <p>Provide a specialized large language model (LLM) tailored to the BCI domain, which is fine-tuned from a foundational LLM using the BCI data aggregated by the platform.</p>
+            </div>
+        </div>
+        <div class="divider-light"></div>
+    </div>
+
+    <!-- ========= Showcase: Controllable Data Generation (Privacy‑Preserving Synthesis) ========= -->
+    <div class="showcase-container">
+        <div class="showcase-title"><i class="fas fa-flask"></i><span>🔬 Showcase 1: Controllable Data Synthesis</span></div>
+        <div class="showcase-sub">Differential privacy synthesis engine · Contributor upload → incentive → consumer generates synthetic dataset with adjustable privacy guarantees.</div>
+        <div class="demo-row">
+            <div class="demo-card">
+                <h4><i class="fas fa-upload"></i> Data Contributor</h4>
+                <div class="input-group"><label>Dataset Name</label><input type="text" id="datasetName" value="bci_dataset_1"></div>
+                <button class="btn" id="uploadBtn"><i class="fas fa-cloud-upload-alt"></i> Upload Dataset</button>
+                <div id="contributorFeedback" class="feedback" style="display: none;"></div>
+            </div>
+            <div class="demo-card">
+                <h4><i class="fas fa-microchip"></i> Data Consumer</h4>
+                <div class="input-group"><label>Dataset Name (must be uploaded)</label><input type="text" id="useDatasetName" value="bci_dataset_1"></div>
+                <div class="input-group"><label>Privacy Level</label><select id="privacyLevel">
+                    <option value="High">High (ε=0.5, strong privacy)</option>
+                    <option value="Medium">Medium (ε=2.0, balanced privacy and utility)</option>
+                    <option value="Low">Low (ε=5.0, high fidelitybalanced)</option>
+                </select></div>
+                <button class="btn btn-secondary" id="generateBtn"><i class="fas fa-chart-line"></i> Generate Synthetic Dataset</button>
+                <div id="consumerFeedback" class="feedback" style="display: none;"></div>
+            </div>
+        </div>
+        <div id="dataPreviewSection" class="data-preview" style="display: none;">
+            <h5><i class="fas fa-table"></i> Data Sample Preview (time series, channels t1–t6)</h5>
+            <div class="preview-section"><strong>Original Dataset:</strong> <span id="originalDatasetName"></span><div id="originalPreviewTable"></div></div>
+            <div class="preview-section"><strong>Synthetic Dataset:</strong> <span id="syntheticDatasetName"></span> <span id="privacyBadge"></span><div id="syntheticPreviewTable"></div></div>
+        </div>
+        <div style="margin-top: 20px; font-size: 0.8rem; background: #eef2ff; border-radius: 20px; padding: 12px; text-align: center;">
+            <i class="fas fa-lightbulb"></i> Contributor uploads a dataset → receives compute vouchers. Consumer selects privacy level → synthetic dataset is generated (subject IDs removed, differential privacy noise added).
+        </div>
+    </div>
+
+    <!-- ========= Showcase 2: Private SQL Query ========= -->
+    <div class="showcase-container">
+        <div class="showcase-title"><i class="fas fa-database"></i><span>🔒 Showcase 2: Privacy‑Preserving Data Query</span></div>
+        <div class="showcase-sub">Run aggregate queries on BCI datasets with differential privacy guarantees. Only statistical results are released; raw records remain protected.</div>
+        <div class="demo-row">
+            <div class="demo-card">
+                <h4><i class="fas fa-code"></i> SQL Query Console</h4>
+                <div class="input-group"><label>Dataset Name</label><input type="text" id="sqlDatasetName" value="bci_dataset_1"></div>
+                <div class="input-group"><label>SQL Query (supports COUNT(*))</label>
+                    <textarea id="sqlQuery" rows="3" placeholder="Example: SELECT COUNT(*) FROM bci_dataset_1 WHERE t1 > 10 AND label = 'Motor imagery'"></textarea>
+                </div>
+                <button class="btn btn-purple" id="runQueryBtn"><i class="fas fa-play"></i> Run Private Query</button>
+                <div id="sqlFeedback" class="feedback" style="display: none;"></div>
+                <div id="sqlResult" class="feedback query-result" style="display: none;"></div>
+                <div style="margin-top: 12px; font-size: 0.75rem; color: #475569;">
+                    <i class="fas fa-info-circle"></i> Privacy: Laplace noise (ε=1.0) is added to all counts. Results are statistically safe for release.
+                </div>
+            </div>
+            <div class="demo-card">
+                <h4><i class="fas fa-question-circle"></i> How to Use</h4>
+                <ul style="margin-left: 20px; color: #334155; font-size: 0.85rem;">
+                    <li>First upload a dataset in Showcase 1 (or use the default name).</li>
+                    <li>Supported: <code>SELECT COUNT(*) FROM &lt;table&gt; WHERE &lt;condition&gt;</code></li>
+                    <li>Condition can compare columns <strong>t1, t2, t3, t4, t5, t6, label</strong> with numbers or strings.</li>
+                    <li>Example: <code>SELECT COUNT(*) FROM bci_dataset_1 WHERE t1 > 8.5 AND label = 'Motor imagery'</code></li>
+                    <li>Results include the noisy count and the original true count for demonstration.</li>
+                </ul>
+                <div class="badge-tool" style="margin-top: 16px;"><i class="fas fa-chart-simple"></i> Differential privacy budget ε=1.0</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---------- Shared dataset storage ----------
+    let uploadedDatasets = new Set();
+
+    // Helper: update dataset input in SQL section when a new dataset is uploaded
+    function syncSQLDatasetInput(name) {
+        const sqlInp = document.getElementById('sqlDatasetName');
+        if (sqlInp && (sqlInp.value.trim() === '' || sqlInp.value.trim() === name)) sqlInp.value = name;
+    }
+
+    // ---------- Showcase 1: Data Synthesis (6 channels: t1..t6) ----------
+    function generateOriginalSamples() {
+        return [
+            { time: "0ms", t1: 12.3, t2: 8.7, t3: 5.2, t4: 3.1, t5: 2.5, t6: 1.8, label: "Motor imagery", subject_id: "sub-01" },
+            { time: "250ms", t1: 9.1, t2: 15.4, t3: 6.8, t4: 4.5, t5: 3.2, t6: 2.1, label: "Motor imagery", subject_id: "sub-02" },
+            { time: "500ms", t1: 7.8, t2: 11.2, t3: 9.3, t4: 6.2, t5: 4.8, t6: 3.5, label: "Motor imagery", subject_id: "sub-03" }
+        ];
+    }
+
+    function generateSyntheticSamples(privacyLevel) {
+        const base = [
+            { time: "0ms", t1: 12.3, t2: 8.7, t3: 5.2, t4: 3.1, t5: 2.5, t6: 1.8, label: "Motor imagery" },
+            { time: "250ms", t1: 9.1, t2: 15.4, t3: 6.8, t4: 4.5, t5: 3.2, t6: 2.1, label: "Motor imagery" },
+            { time: "500ms", t1: 7.8, t2: 11.2, t3: 9.3, t4: 6.2, t5: 4.8, t6: 3.5, label: "Motor imagery" }
+        ];
+        let noise = privacyLevel === 'High' ? 2.5 : (privacyLevel === 'Medium' ? 1.2 : 0.6);
+        return base.map(s => ({
+            time: s.time,
+            t1: parseFloat((s.t1 + (Math.random() - 0.5) * noise).toFixed(1)),
+            t2: parseFloat((s.t2 + (Math.random() - 0.5) * noise).toFixed(1)),
+            t3: parseFloat((s.t3 + (Math.random() - 0.5) * noise).toFixed(1)),
+            t4: parseFloat((s.t4 + (Math.random() - 0.5) * noise).toFixed(1)),
+            t5: parseFloat((s.t5 + (Math.random() - 0.5) * noise).toFixed(1)),
+            t6: parseFloat((s.t6 + (Math.random() - 0.5) * noise).toFixed(1)),
+            label: s.label
+        }));
+    }
+
+    function renderTable(data, cols) {
+        if (!data || data.length === 0) return "<p>No data available</p>";
+        // let html = '<table class="preview-table"><thead>';
+        let html = '<table class="preview-table">';
+        cols.forEach(c => html += `<th>${c}</th>`);
+        html += '</thead><tbody>';
+        data.forEach(r => {
+            html += '<tr>';
+            cols.forEach(c => {
+                let v = r[c] !== undefined ? r[c] : '—';
+                html += `<td>${v}</td>`;
+            });
+            html += '</tr>';
+        });
+        html += '</tbody></table>';
+        return html;
+    }
+
+    function updateDataPreview(datasetName, privacyLevel) {
+        const origSamples = generateOriginalSamples();
+        const origCols = ['time', 't1', 't2', 't3', 't4', 't5', 't6', 'label', 'subject_id'];
+        document.getElementById('originalPreviewTable').innerHTML = renderTable(origSamples, origCols);
+        const synthSamples = generateSyntheticSamples(privacyLevel);
+        const synthCols = ['time', 't1', 't2', 't3', 't4', 't5', 't6', 'label'];
+        document.getElementById('syntheticPreviewTable').innerHTML = renderTable(synthSamples, synthCols);
+        document.getElementById('originalDatasetName').innerText = datasetName;
+        document.getElementById('syntheticDatasetName').innerText = `${datasetName}-syn`;
+        let privacyText = privacyLevel === 'High' ? 'High (ε=0.5)' : (privacyLevel === 'Medium' ? 'Medium (ε=2.0)' : 'Low (ε=5.0)');
+        document.getElementById('privacyBadge').innerText = privacyText;
+        document.getElementById('dataPreviewSection').style.display = 'block';
+    }
+
+    // Upload dataset
+    document.getElementById('uploadBtn').addEventListener('click', () => {
+        let name = document.getElementById('datasetName').value.trim();
+        let fb = document.getElementById('contributorFeedback');
+        if (!name) {
+            fb.style.display = 'block';
+            fb.innerHTML = '<i class="fas fa-exclamation-triangle warning-text"></i> Please enter a dataset name.';
+            return;
+        }
+        if (uploadedDatasets.has(name)) {
+            fb.style.display = 'block';
+            fb.innerHTML = `<i class="fas fa-check-circle success-text"></i> Dataset "${name}" already exists. Extra compute vouchers granted!`;
+            return;
+        }
+        uploadedDatasets.add(name);
+        fb.style.display = 'block';
+        fb.innerHTML = `<i class="fas fa-check-circle success-text"></i> Dataset "${name}" uploaded successfully! The platform has granted you <strong>200 compute vouchers</strong> as financial incentive (redeemable for computing power/models). Thank you for your contribution!`;
+        // Sync SQL dataset input
+        syncSQLDatasetInput(name);
+        // Also sync the consumer dataset name input if empty or same
+        let useInp = document.getElementById('useDatasetName');
+        if (useInp.value.trim() === '' || useInp.value.trim() === name) useInp.value = name;
+    });
+
+    // Generate synthetic dataset
+    document.getElementById('generateBtn').addEventListener('click', () => {
+        let target = document.getElementById('useDatasetName').value.trim();
+        let level = document.getElementById('privacyLevel').value;
+        let fb = document.getElementById('consumerFeedback');
+        if (!target) {
+            fb.style.display = 'block';
+            fb.innerHTML = '<i class="fas fa-exclamation-triangle warning-text"></i> Please enter a dataset name.';
+            return;
+        }
+        if (!uploadedDatasets.has(target)) {
+            fb.style.display = 'block';
+            fb.innerHTML = `<i class="fas fa-exclamation-triangle warning-text"></i> Dataset "${target}" not found. Please upload it first.`;
+            return;
+        }
+        fb.style.display = 'block';
+        fb.innerHTML = `<i class="fas fa-check-circle success-text"></i> Synthesis successful! Generated ${target}-syn with privacy level ${level}.`;
+        updateDataPreview(target, level);
+    });
+
+    // ---------- Showcase 2: Private SQL Query (6 channels t1..t6) ----------
+    // Simulate a full dataset of 50 records based on the extended channels.
+    function generateFullDataset() {
+        const records = [];
+        const labels = ['Motor imagery', 'Resting', 'Movement'];
+        for (let i = 0; i < 50; i++) {
+            let t1 = 5 + Math.random() * 12;
+            let t2 = 4 + Math.random() * 14;
+            let t3 = 3 + Math.random() * 10;
+            let t4 = 2 + Math.random() * 8;
+            let t5 = 1 + Math.random() * 6;
+            let t6 = 0.5 + Math.random() * 5;
+            let label = labels[Math.floor(Math.random() * labels.length)];
+            // Add correlation to simulate realistic EEG
+            if (label === 'Motor imagery') {
+                t1 += 2; t2 += 3;
+            } else if (label === 'Movement') {
+                t2 += 2; t3 += 2;
+            }
+            records.push({
+                t1: parseFloat(t1.toFixed(1)),
+                t2: parseFloat(t2.toFixed(1)),
+                t3: parseFloat(t3.toFixed(1)),
+                t4: parseFloat(t4.toFixed(1)),
+                t5: parseFloat(t5.toFixed(1)),
+                t6: parseFloat(t6.toFixed(1)),
+                label
+            });
+        }
+        return records;
+    }
+
+    // Store the simulated dataset for each uploaded dataset
+    const datasetRecords = new Map();
+
+    function getDatasetRecords(name) {
+        if (!datasetRecords.has(name)) {
+            datasetRecords.set(name, generateFullDataset());
+        }
+        return datasetRecords.get(name);
+    }
+
+    // Simple SQL parser: SELECT COUNT(*) FROM table WHERE condition
+    function parseAndCount(sql, datasetName, records) {
+        sql = sql.trim();
+        const regex = /SELECT\s+COUNT\(\*\)\s+FROM\s+(\w+)\s+WHERE\s+(.+)/i;
+        const match = sql.match(regex);
+        if (!match) {
+            return { error: "Unsupported query. Please use: SELECT COUNT(*) FROM <table> WHERE <condition>" };
+        }
+        const tableName = match[1];
+        if (tableName !== datasetName) {
+            return { error: `Table name "${tableName}" does not match dataset "${datasetName}".` };
+        }
+        const condition = match[2];
+        let count = 0;
+        for (let rec of records) {
+            if (evaluateCondition(condition, rec)) {
+                count++;
+            }
+        }
+        return { count, condition };
+    }
+
+    function evaluateCondition(cond, record) {
+        const ops = ['>=', '<=', '>', '<', '!=', '='];
+        for (let op of ops) {
+            const idx = cond.indexOf(op);
+            if (idx !== -1) {
+                let left = cond.substring(0, idx).trim();
+                let right = cond.substring(idx + op.length).trim();
+                let value;
+                if ((right.startsWith("'") && right.endsWith("'")) || (right.startsWith('"') && right.endsWith('"'))) {
+                    value = right.slice(1, -1);
+                } else {
+                    value = parseFloat(right);
+                    if (isNaN(value)) return false;
+                }
+                const field = left;
+                if (!record.hasOwnProperty(field)) return false;
+                const recordVal = record[field];
+                if (typeof value === 'number') {
+                    switch (op) {
+                        case '>': return recordVal > value;
+                        case '<': return recordVal < value;
+                        case '>=': return recordVal >= value;
+                        case '<=': return recordVal <= value;
+                        case '=': return recordVal === value;
+                        case '!=': return recordVal !== value;
+                    }
+                } else {
+                    switch (op) {
+                        case '=': return recordVal === value;
+                        case '!=': return recordVal !== value;
+                        default: return false;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // Add Laplace noise for differential privacy (ε=1.0)
+    function addLaplaceNoise(trueCount, epsilon = 1.0) {
+        const scale = 1.0 / epsilon;
+        const u = Math.random() - 0.5;
+        const noise = -scale * Math.sign(u) * Math.log(1 - 2 * Math.abs(u));
+        return Math.max(0, trueCount + noise);
+    }
+
+    document.getElementById('runQueryBtn').addEventListener('click', () => {
+        const datasetName = document.getElementById('sqlDatasetName').value.trim();
+        const sql = document.getElementById('sqlQuery').value.trim();
+        const fb = document.getElementById('sqlFeedback');
+        const resultDiv = document.getElementById('sqlResult');
+
+        if (!datasetName) {
+            fb.style.display = 'block';
+            fb.innerHTML = '<i class="fas fa-exclamation-triangle warning-text"></i> Please enter a dataset name.';
+            resultDiv.style.display = 'none';
+            return;
+        }
+        if (!uploadedDatasets.has(datasetName)) {
+            fb.style.display = 'block';
+            fb.innerHTML = `<i class="fas fa-exclamation-triangle warning-text"></i> Dataset "${datasetName}" not found. Please upload it first in Showcase 1.`;
+            resultDiv.style.display = 'none';
+            return;
+        }
+        if (!sql) {
+            fb.style.display = 'block';
+            fb.innerHTML = '<i class="fas fa-exclamation-triangle warning-text"></i> Please enter an SQL query.';
+            resultDiv.style.display = 'none';
+            return;
+        }
+
+        fb.style.display = 'none';
+        const records = getDatasetRecords(datasetName);
+        const parseResult = parseAndCount(sql, datasetName, records);
+        if (parseResult.error) {
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `<i class="fas fa-exclamation-triangle warning-text"></i> ${parseResult.error}`;
+            return;
+        }
+        const trueCount = parseResult.count;
+        const noisyCount = addLaplaceNoise(trueCount, 1.0);
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = `
+            <i class="fas fa-chart-line"></i> <strong>Private Query Result</strong><br>
+            <strong>Condition:</strong> ${parseResult.condition}<br>
+            <strong>True count:</strong> ${trueCount}<br>
+            <strong>Noisy count (DP, ε=1.0):</strong> ${noisyCount.toFixed(1)}<br>
+            <span style="font-size:0.75rem; color:#475569;">🔒 Differential privacy adds random noise to protect individual records.</span>
+        `;
+    });
+</script>
+</body>
+</html>
